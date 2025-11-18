@@ -110,17 +110,17 @@ fun Route.taskRoutes() {
 
 ## 🎯 Week 6 Lab 1 Checklist
 
-- [ ] `data/TaskRepository.kt` created with Task and TaskRepository
-- [ ] `routes/TaskRoutes.kt` implemented with GET, POST routes
-- [ ] `tasks/index.peb` template complete with ARIA attributes
-- [ ] Server runs: `./gradlew run`
-- [ ] Can add tasks (JS enabled)
-- [ ] Can delete tasks (JS enabled)
-- [ ] Can add tasks (JS disabled - page reloads)
-- [ ] Can delete tasks (JS disabled - page reloads)
-- [ ] Keyboard navigation works (Tab, Enter)
-- [ ] Live region announces status messages
-- [ ] Git commit with meaningful message
+- [x] `data/TaskRepository.kt` created with Task and TaskRepository
+- [x] `routes/TaskRoutes.kt` implemented with GET, POST routes
+- [x] `tasks/index.peb` template complete with ARIA attributes
+- [x] Server runs: `./gradlew run`
+- [x] Can add tasks (JS enabled)
+- [x] Can delete tasks (JS enabled)
+- [x] Can add tasks (JS disabled - page reloads)
+- [x] Can delete tasks (JS disabled - page reloads)
+- [x] Keyboard navigation works (Tab, Enter)
+- [x] Live region announces status messages
+- [x] Git commit with meaningful message
 
 ---
 
