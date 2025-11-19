@@ -1,1 +1,8 @@
 id,title,story_ref,story_type,need,type,severity,inclusion_risk,evidence,notes,candidate_fix
+1,Weak notifications for reminders,stories.md#S3,Job story,Notifications,Usability,High,"Cognitive,SR",notes.md,"Weak notification sound, sometimes missed; needs stronger notification",FALSE
+2,No confirmation for delete action,stories.md#S2,Job story,Confirmation feedback,Accessibility,High,"Cognitive,Keyboard",notes.md,Participants expressed uncertainty with accidental deletions; needs explicit confirmation prompt,TRUE
+3,Keyboard navigation issues with broken trackpad,stories.md#S4,Job story,Keyboard access,Accessibility,High,"Keyboard,Motor",notes.md,Keyboard-only navigation is difficult without trackpad; needs full keyboard accessibility,TRUE
+4,Zooming affects task manager layout,stories.md#S5,Job story,Responsive design,Usability,Medium,Low vision,notes.md,Zooming in/out affects readability and task layout on second monitor; needs responsive design improvements,FALSE
+5,No progress report at the start of the day,stories.md#S6,Job story,Progress tracking,Usability,Low,Cognitive,notes.md,Progress report is a nice-to-have feature for motivation; deferred to Semester 2,FALSE
+6,No backup visibility when phone battery dies,stories.md#S4,Job story,Device dependency,Performance,High,"Cognitive,Device Dependency",notes.md,"Without a backup device or notification, reminders are lost when phone dies; needs multi-device sync",FALSE
+7,Screen reader doesn't announce task deletion,Audit,WCAG check,Error announcement,Accessibility,High,SR,Internal audit; WCAG 4.1.3,"Screen reader fails to announce task deletion properly, needs improvement in live region management",TRUE
