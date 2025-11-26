@@ -40,8 +40,8 @@ import java.util.concurrent.atomic.AtomicInteger
  * **Week 8 evolution**: Add `createdAt` timestamp for sorting
  */
 data class Task(
-    val id: Int,
-    var title: String,
+	val id: Int,
+	var title: String,
 )
 
 /**
@@ -51,48 +51,59 @@ data class Task(
  * **Week 10 evolution**: Refactor to class with UUID for production-readiness
  */
 object TaskRepository {
-    private val file = File("data/tasks.csv")
-    private val tasks = mutableListOf<Task>()
-    private val idCounter = AtomicInteger(1)
+	private val file = File("data/tasks.csv")
+	private val tasks = mutableListOf<Task>()
+	private val idCounter = AtomicInteger(1)
 
-    init {
-        file.parentFile?.mkdirs()
-        if (!file.exists()) {
-            file.writeText("id,title\n")
-        } else {
-            file.readLines().drop(1).forEach { line ->
-                val parts = line.split(",", limit = 2)
-                if (parts.size == 2) {
-                    val id = parts[0].toIntOrNull() ?: return@forEach
-                    tasks.add(Task(id, parts[1]))
-                    idCounter.set(maxOf(idCounter.get(), id + 1))
-                }
-            }
-        }
-    }
+	init {
+		file.parentFile?.mkdirs()
+		if (!file.exists()) {
+			file.writeText("id,title\n")
+		} else {
+			file.readLines().drop(1).forEach { line ->
+				val parts = line.split(",", limit = 2)
+				if (parts.size == 2) {
+					val id = parts[0].toIntOrNull() ?: return@forEach
+					tasks.add(Task(id, parts[1]))
+					idCounter.set(maxOf(idCounter.get(), id + 1))
+				}
+			}
+		}
+	}
 
-    fun all(): List<Task> = tasks.toList()
+	fun all(): List<Task> = tasks.toList()
 
-    fun add(title: String): Task {
-        val task = Task(idCounter.getAndIncrement(), title)
-        tasks.add(task)
-        persist()
-        return task
-    }
+	fun add(title: String): Task {
+		val task = Task(idCounter.getAndIncrement(), title)
+		tasks.add(task)
+		persist()
+		return task
+	}
 
-    fun delete(id: Int): Boolean {
-        val removed = tasks.removeIf { it.id == id }
-        if (removed) persist()
-        return removed
-    }
+	fun delete(id: Int): Boolean {
+		val removed = tasks.removeIf { it.id == id }
+		if (removed) persist()
+		return removed
+	}
 
-    // TODO: Week 7 Lab 1 Activity 2 Step 6
-    // Add find() and update() methods here
-    // Follow instructions in mdbook to implement:
-    // - fun find(id: Int): Task?
-    // - fun update(task: Task)
+	// TODO: Week 7 Lab 1 Activity 2 Step 6
+	// Add find() and update() methods here
+	// Follow instructions in mdbook to implement:
+	// - fun find(id: Int): Task?
+	// - fun update(task: Task)
 
-    private fun persist() {
-        file.writeText("id,title\n" + tasks.joinToString("\n") { "${it.id},${it.title}" })
-    }
+	// Look up task by ID
+	fun get(id: Int): Task? = tasks.find { it.id == id }
+
+	// Update task title
+	fun update(id: Int, newTitle: String): Task? {
+		val task = tasks.find { it.id == id } ?: return null
+		task.title = newTitle
+		persist()
+		return task
+	}
+
+	private fun persist() {
+		file.writeText("id,title\n" + tasks.joinToString("\n") { "${it.id},${it.title}" })
+	}
 }
